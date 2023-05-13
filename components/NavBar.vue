@@ -17,7 +17,9 @@
       <NuxtLink to="/" class="navbar-item">
         Home
       </NuxtLink>
-      
+      <div class="navbar-item">
+      <input class="input2" v-model="query" type="text" placeholder="Search">
+    </div>
       <!-- <a class="navbar-item">
         Documentation
       </a>
@@ -45,9 +47,7 @@
       </div> -->
     </div>
 
-    <div class="navbar-item">
-      <input class="input2" v-model="query" type="text" placeholder="Search">
-    </div>
+    
 
     <div class="navbar-end">
       <div class="navbar-item">
@@ -85,5 +85,14 @@ export default {
 
 
 <style>
-  
+  .input2 {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background: #dedddd;
+  color: #000000;
+  font-size: 16px;
+}
 </style>

@@ -5,7 +5,7 @@
       <form @submit="handleSubmit">
         <input class="input1" type="uid" placeholder="UID" v-model="username">
         <input class="input1" type="password" placeholder="Password" v-model="password">
-        <button type="submit" class="input1">Login</button>
+        <button type="submit" class="button1">Login</button>
       </form>
     </div>  
     </body>
@@ -67,7 +67,7 @@ h1 {
   font-size: 16px;
 }
 
-button {
+.button1 {
   display: block;
   width: 100%;
   padding: 10px;
