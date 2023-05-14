@@ -25,7 +25,8 @@ import axios from "axios";
     methods: {
       handleSubmit(event) {
         event.preventDefault()
-        if(!this.uid==='' && !this.password===''){
+		console.log(this.uid, this.password)
+        if(this.uid && this.password){
           axios.post("http://localhost:5000/login", {uid: this.uid, password: this.password})
           .then(({data}) => {
             console.log(data);
