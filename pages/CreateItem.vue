@@ -4,7 +4,7 @@
             <h1>Create an Item to Sell</h1>
 			<form @submit="handleSubmit" action="#" method="post" class="item-form">
 			<label for="item_name">Item Name</label>
-			<input type="text" id="item_name" name="item_name" placeholder="Enter item name" v-model="formValues.name">
+			<input type="text" id="item_name" name="item_name" placeholder="Enter item name" v-model="formValues.prodName">
 
 			<label for="item_category">Category</label>
 			<select id="item_category" name="item_category" v-model="formValues.category">
@@ -22,7 +22,7 @@
 			</select>
 
 			<label for="item_size">Size</label>
-			<select id="item_size" name="item_size" v-model="formValues.size">
+			<select id="item_size" name="item_size" v-model="formValues.prodSize">
 				<option value="XS">XS</option>
 				<option value="S">S</option>
 				<option value="M">M</option>
@@ -31,10 +31,10 @@
 			</select>
 
 			<label for="item_quanity">Quantity</label>
-			<input type="text" id="item_quantity" name="item_quantity" placeholder="Enter quantity" v-model="formValues.quanity">
+			<input type="text" id="item_quantity" name="item_quantity" placeholder="Enter quantity" v-model="formValues.quantity">
 
 			<label for="item_price">Price</label>
-			<input type="number" id="item_price" name="item_price" placeholder="Enter item price" v-model="formValues.price">
+			<input type="number" id="item_price" name="item_price" placeholder="Enter item price" v-model="formValues.prodPrice">
 
 			<label for="item_photo">Photo</label>
 			<input type="file" id="item_photo" name="item_photo">
@@ -45,26 +45,37 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
 
 data() {
     return {
         formValues: {
-            name: '',
+            prodName: '',
             category: '',
             condition: '',
-            size: '',
-            quanity: 0,
-            price: 0,
+            prodSize: '',
+            quantity: 0,
+            prodPrice: 0,
         }
     }
 },
 
 methods: {
     handleSubmit(event) {
-        event.preventDefault()
-        console.log(event)
-        console.log(this.formValues)
+        event.preventDefault();
+        console.log(this.formValues);
+		if (this.formValues.prodName && this.formValues.category && this.formValues.condition && this.formValues.prodSize && this.formValues.quantity && this.formValues.prodPrice) {
+			axios.post("http://localhost:5000/createProd", this.formValues)
+			.then(({data}) => {
+				console.log(data);
+			})
+			.catch((error) => {
+				console.log(error);
+			})
+		} else {
+			console.log("please provide all the values");
+		}
     }
 }
 }
