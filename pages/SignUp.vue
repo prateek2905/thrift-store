@@ -14,7 +14,7 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 	export default {
 
 		data() {
@@ -30,19 +30,24 @@
 
 		methods: {
 			handleSubmit(event) {
-				event.preventDefault()
-				// console.log(event)
-				// console.log(this.formValues)
-                if(this.uid && this.email && this.hosteller && this.password){
-                    axios.post("http://localhost:5000/register", this.formValues)
-                    .then(function (response) {
-                        console.log(response);
+				event.preventDefault();
+                if(this.formValues.uid && this.formValues.email && this.formValues.hosteller && this.formValues.password){
+                    axios.post("http://localhost:5000/register", {...this.formValues})
+                    .then(({data, status}) => {
+                        console.log(data);
+                        this.$router.push('/dashboard');
               })
-              .catch(function ({ response : { status }}) {
+              .catch(function (response) {
+                const {status} = response;
+                console.log(response);
                   if(status == 409){
-                    outputDiv.innerText = "This user already exists please try again with a new email ID";
+                    console.log("duplicate user")
+                  }else{
+                    console.log(response);
                   }
               });
+                }else{
+                    console.log("please fill all the values");
                 }
 			}
 		}
