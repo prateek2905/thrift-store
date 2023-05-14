@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import axios from "axios";
 
 export const useSearchQuery = defineStore('searchQuery', () => {
     const query = ref('')
@@ -6,7 +7,13 @@ export const useSearchQuery = defineStore('searchQuery', () => {
         query.value = newQuery
         return 
     }
-
+	axios.get("http://localhost:5000/allProd")
+	.then(({data : { products}}) => {
+		console.log(products);
+	})
+	.catch((error) => {
+		console.log(error);
+	})
 	const products = ref([
 		{
 			name: 'Shirt 3',
