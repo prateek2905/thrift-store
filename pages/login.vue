@@ -3,7 +3,7 @@
         <div class="login-container">
       <h1>Login</h1>
       <form @submit="handleSubmit">
-        <input class="input1" type="uid" placeholder="UID" v-model="username">
+        <input class="input1" type="uid" placeholder="UID" v-model="uid">
         <input class="input1" type="password" placeholder="Password" v-model="password">
         <button type="submit" class="button1">Login</button>
       </form>
@@ -16,16 +16,15 @@
 
     data() {
       return {
-        username: "",
+        uid: "",
         password: "",
       }
     },
 
     methods: {
       handleSubmit(event) {
-        console.log(this.username, this.password)
         event.preventDefault()
-        if(this.username==='' && this.password==='')
+        if(this.uid==='' && this.password==='')
           console.log('enter username and pwd')
         else
           console.log('submitted')
