@@ -14,6 +14,9 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
+      <div class="navbar-item" style="font-weight: 900;">
+        CU Thrift Store
+      </div>
       <NuxtLink to="/" class="navbar-item">
         Home
       </NuxtLink>

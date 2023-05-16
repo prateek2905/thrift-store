@@ -74,10 +74,6 @@ export default {
       margin: 0;
       height: 100%;
       min-height: 633px;
-      background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
       padding: 0;
       font-family: sans-serif;
     }

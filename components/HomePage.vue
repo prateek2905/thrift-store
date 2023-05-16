@@ -96,7 +96,7 @@ export default {
 
 .RAHeading {
 	border-radius: 20px;
-	background-color: #dfcdb3;
+	background-color: #252a33;
 	margin: 2rem;
     box-shadow: 2px 2px 11px 1px grey;
 }
@@ -105,7 +105,7 @@ export default {
 	font-size: xx-large;
 	font-weight: bold;
 	text-align: center;
-	color: #da4339;
+	color: #ffeba7;
 	padding: 0.5rem;
 }
 .input2 {

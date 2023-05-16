@@ -19,7 +19,7 @@
 <style scoped>
 
 .product-box {
-    background-color: #d8c3a5;
+    background-color: #252a33;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -40,7 +40,7 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	color: #da4339;
+	color: #ffeba7;
     font-weight: 750;
     align-content: stretch;
     justify-content: space-evenly;
