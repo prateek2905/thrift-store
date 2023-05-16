@@ -1,16 +1,16 @@
 <template>
 	<div class="row">
 		<div v-for="product in products" :key="product.name" class="container">
-			<NuxtLink :to="`products/${product.name}`">
+			<NuxtLink :to="`products/${product.prodName}`">
 				<ProductCard>
 					<template v-slot:img>
 						<img :src="product.img" alt="">
 					</template>
 					<template v-slot:info-left>
-						<span>{{ product.name }}</span><span>{{ product.size }}</span>
+						<span>{{ product.prodName }}</span><span>{{ product.prodSize }}</span>
 					</template>
 					<template v-slot:info-right>
-						<span>{{ product.price }}</span>
+						<span>{{ product.prodPrice }}</span>
 					</template>
 				</ProductCard>
 			</NuxtLink>
@@ -38,7 +38,7 @@
     flex-wrap: nowrap;
 	gap: 100px;
 	padding: 2rem;
-	justify-content: center;
+	justify-content: space-between;
 	overflow-x: auto;
 	overflow-y: hidden;
 }

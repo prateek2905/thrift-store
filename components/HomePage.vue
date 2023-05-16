@@ -21,8 +21,8 @@ import NavBar from './NavBar.vue'
 import ProductRow from './ProductRow.vue'
 import ProductCard from './ProductCard.vue'
 import { useSearchQuery } from "~/stores/myStore"
+import axios from "axios";
 
-const RecentlyAdded = []
 const DiscountPrice = []
 
 let store
@@ -31,24 +31,19 @@ export default {
 
 	name: 'App',
 
-	beforeMount() {
+	async created() {
 		this.store = useSearchQuery()
-		
-		if(this.RecentlyAdded.length===0) {
-			if(this.RecentlyAdded.length===0) {
-				for(let i=0;i<this.store.products.length/2;i++) {
-					this.RecentlyAdded.push(this.store.products[i])
-					this.DiscountPrice.push(this.store.products[i+this.store.products.length/2])
-				}
-			}
+
+		try {
+			this.store.products = (await axios.get("http://localhost:5000/allProd")).data.products
+		}
+		catch(err) {
+			console.log(err);	
 		}
 	},
 
 	data() {
-
 		return {
-			RecentlyAdded,
-			DiscountPrice,
 			store: this.store
 		};
 	},
@@ -58,11 +53,30 @@ export default {
 		ProductRow,
 		ProductCard
 	},
+
+	computed: {
+		RecentlyAdded() {
+			let l = []
+			for(let i=0;i<this.store.products.length/2;i++) {
+				l.push(this.store.products[i])
+			}
+			return l
+		},
+		DiscountPrice() {
+			let l = []
+			for(let i=0;i<this.store.products.length/2;i++) {
+				l.push(this.store.products[i+Math.floor(this.store.products.length/2)])
+			}
+			return l
+		},
+	},
+
 	methods: {
     filteredList(products) {
-      return products.filter(p => {
-        return p.name.toLowerCase().includes(this.store.query.toLowerCase())
-      })
+      	return products.filter(p => {
+		  if(p)
+      	  return p.prodName.toLowerCase().includes(this.store.query.toLowerCase())
+      	})
     },
 
   },

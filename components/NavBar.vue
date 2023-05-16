@@ -51,7 +51,7 @@
 
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="buttons">
+        <div class="buttons" v-if="store.loggedIn==='0'">
           <NuxtLink to="/SignUp" class="button is-primary">
             <strong>Sign up</strong>
             </NuxtLink>
@@ -61,6 +61,11 @@
           </NuxtLink>
         </div>
       </div>
+        <div class="buttons" v-if="store.loggedIn ==='1'">
+          <NuxtLink to="/dashboard" class="button is-primary">
+            <strong>Welcome {{ store.uid }}</strong>
+          </NuxtLink>
+        </div>
     </div>
   </div>
 </nav>
@@ -70,9 +75,15 @@
 import { useSearchQuery } from "~/stores/myStore"
 
 export default {
+
   data({ $pinia }) {
     const store = useSearchQuery($pinia)
-    return { store, query: '' }
+    console.log(store.loggedIn)
+    console.log('navbar', store.loggedIn)
+    return {
+      store,
+      query: '',  
+    }
   },
   watch: {
     query(newValue) {
