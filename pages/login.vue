@@ -71,22 +71,31 @@ export default {
 
 <style>
     body {
+      background-image: url("https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80");
       margin: 0;
+      height: 100%;
+      min-height: 633px;
+      background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
       padding: 0;
       font-family: sans-serif;
     }
 
 .login-container {
-  width: 400px;
+  width: 440px;
+  height: 380px;
   margin: 100px auto;
-  background: #fff;
+  background-color: #2a2b38;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg');
   padding: 40px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
   text-align: center;
 }
 
 h1 {
-  color: #333;
+  color: #ffeba7;
   margin-bottom: 30px;
 }
 

@@ -1,4 +1,5 @@
 <template>
+	<body>
 	<div class="grid-container">
 	<br>
 	<div class="RAHeading">
@@ -14,6 +15,7 @@
 	<ProductRow :products="filteredList(DiscountPrice)" />
 
 	</div>
+</body>
 </template>
 
 <script>

@@ -56,6 +56,7 @@ import axios from 'axios';
 </script>
 
 <style>
+
     h1{
         color: #333;
         font-size: 30px;
@@ -63,12 +64,11 @@ import axios from 'axios';
     }
     
     .page{
+      height: 732px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100%;
         width: 100%;
-        position: absolute;
     }
 
     .signup{
@@ -80,7 +80,12 @@ import axios from 'axios';
       -o-border-radius: 15px;
       margin: 100px auto;
       padding: 34px;
-      
+      width: 440px;
+  background-color: #2a2b38;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg');
+  padding: 40px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  
       width: 30%;
     }
     .form{
