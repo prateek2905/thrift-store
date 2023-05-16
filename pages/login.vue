@@ -7,37 +7,63 @@
         <input class="input1" type="password" placeholder="Password" v-model="password">
         <button type="submit" class="button1">Login</button>
       </form>
+      <h1 style="color:red" v-show="wrongCred">Incorrect Credentials</h1>
     </div>  
     </body>
 </template>
 
 <script>
 import axios from "axios";
-  export default {
+import { useSearchQuery } from "~/stores/myStore"
 
-    data() {
+
+export default {
+
+
+    data({$pinia}) {
+      const store = useSearchQuery($pinia)
       return {
+        store,
         uid: "",
         password: "",
+        wrongCred: false
       }
     },
 
     methods: {
+
       handleSubmit(event) {
         event.preventDefault()
 		console.log(this.uid, this.password)
         if(this.uid && this.password){
           axios.post("http://localhost:5000/login", {uid: this.uid, password: this.password})
           .then(({data}) => {
-            console.log(data);
+            console.log(data)
+            this.handleAuth(data)
           })
           .catch((error) => {
             console.log(error);
+            this.wrongCred = true
           })
         }
         else{
           console.log('enter username and pwd')
         }      
+      },
+
+      handleAuth(data) {
+          this.store.loggedIn = '1'
+          this.store.uid = data.uid
+          this.store.user = data._id
+
+          if(localStorage!==undefined) {
+            localStorage.setItem('flag', '1')
+            localStorage.setItem('uid', data.uid)
+            localStorage.setItem('user', data._id)
+          }
+
+          navigateTo('/dashboard')
+
       }
     }
   }

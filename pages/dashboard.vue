@@ -1,52 +1,66 @@
 <template>
-    <div class="account">
-        
-
-        <div class="account-info-container">
-            
-                <h1>Account Info</h1>
-                <p>Username: </p>
-                <p>Email: </p>
-                <p>Phone: </p>
-                <p>Location: </p>
-                <p>Items for Sale: </p>
-				<NuxtLink to="/CreateItem"><button class="button1">New Item</button></NuxtLink>
-        </div>
-    </div>
+	<div class="container">
+		<div class="account">
+			<div class="account-info-container">
+					<h1>Account Info</h1>
+					<p>Username: </p>
+					<p>Email: </p>
+					<p>Phone: </p>
+					<p>Location: </p>
+					<p>Items for Sale: </p>
+					<NuxtLink to="/CreateItem"><button class="button1">New Item</button></NuxtLink>
+			</div>
+		</div>
+		<ProductRow :products="userProducts" v-if="userProducts.length>0" />
+		<h1 v-if="userProducts.length===0" >Add Some Products</h1>
+	</div>
 </template>
 
 <script>
+import { useSearchQuery } from '~/stores/myStore'
+import axios from "axios"
+import ProductRow from '~/components/ProductRow.vue'
+
+	let userProducts = []
 
 	export default {
-
-		data() {
-			return {
-				formValues: {
-					name: '',
-					category: '',
-					condition: '',
-					size: '',
-					quanity: 0,
-					price: 0,
-				}
-			}
-		},
-
-		methods: {
-			handleSubmit(event) {
-				event.preventDefault()
-				console.log(event)
-				console.log(this.formValues)
-			}
-		}
-	}
+    async created() {
+        const store = useSearchQuery();
+        store.products = (await axios.get("http://localhost:5000/allProd")).data.products;
+        console.log(store.user);
+        this.userProducts = store.products.filter((p) => {
+            return p.user === store.user;
+        });
+        console.log(this.userProducts);
+    },
+    data() {
+        return {
+            formValues: {
+                name: "",
+                category: "",
+                condition: "",
+                size: "",
+                quanity: 0,
+                price: 0,
+            },
+			userProducts
+        };
+    },
+    methods: {
+        handleSubmit(event) {
+            event.preventDefault();
+            console.log(event);
+            console.log(this.formValues);
+        }
+    },
+    components: { ProductRow }
+}
 
 </script>
 
 <style>
         .account{
 			font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
             height: 100%;
             display: flex;
             flex-direction: row;
@@ -56,7 +70,6 @@
             display: flex;
 			flex-direction: column;
 			align-items: center;
-			height: 100vh;
             width: 60%;
             
         }
@@ -75,6 +88,18 @@
 			border: 1px solid #ccc;
 			border-radius: 4px;
 			resize: vertical;
+		}
+
+		.button1 {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border: none;
+			border-radius: 20px;
+			background: #007bff;
+			color: #fff;
+			font-size: 16px;
+			cursor: pointer;
 		}
 
 		label {

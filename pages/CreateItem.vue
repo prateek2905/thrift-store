@@ -46,10 +46,14 @@
 
 <script>
 import axios from "axios";
+import { useSearchQuery } from "~/stores/myStore";
+
 export default {
 
-data() {
+data($pinia) {
+	const store = useSearchQuery()
     return {
+		store, 
         formValues: {
             prodName: '',
             category: '',
@@ -57,6 +61,7 @@ data() {
             prodSize: '',
             quantity: 0,
             prodPrice: 0,
+			user: '',
         }
     }
 },
@@ -64,6 +69,7 @@ data() {
 methods: {
     handleSubmit(event) {
         event.preventDefault();
+		this.formValues.user = this.store.user
         console.log(this.formValues);
 		if (this.formValues.prodName && this.formValues.category && this.formValues.condition && this.formValues.prodSize && this.formValues.quantity && this.formValues.prodPrice) {
 			axios.post("http://localhost:5000/createProd", this.formValues)

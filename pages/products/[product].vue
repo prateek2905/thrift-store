@@ -8,8 +8,8 @@
       </div>
       <div class="p-8 flex flex-col justify-center items-center">
         <h1 class="font-bold text-lg">{{ productName }}</h1>
-        <h1 class="font-bold text-lg">{{product.size}}</h1>
-        <h1 class="font-bold text-lg">{{product.price}}</h1>
+        <h1 class="font-bold text-lg">{{product.prodSize}}</h1>
+        <h1 class="font-bold text-lg">{{product.prodPrice}}</h1>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@ import { useSearchQuery } from '~~/stores/myStore'
 			route = useRoute()
 			this.productName = route.params.product
 			const store = useSearchQuery()
-			this.product = store.products.filter((prod) => prod.name === this.productName)[0]
+			this.product = store.products.filter((prod) => prod.prodName === this.productName)[0]
 		},
 
 		data() {
