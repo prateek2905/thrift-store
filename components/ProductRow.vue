@@ -4,7 +4,7 @@
 			<NuxtLink :to="`products/${product.prodName}`">
 				<ProductCard>
 					<template v-slot:img>
-						<img :src="product.img" alt="">
+						<img src="https://picsum.photos/500/300" alt="">
 					</template>
 					<template v-slot:info-left>
 						<span>{{ product.prodName }}</span><span>{{ product.prodSize }}</span>

@@ -4,12 +4,12 @@
   <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-1xl sm:p-20">
     <div class="grid sm:grid-cols-2 gap-4">
       <div class="border-b sm:border-b-0 sm:border-r p-8 relative flex justify-center">
-		<img :src="product.img"> 
+		<img src="https://picsum.photos/500/300"> 
       </div>
       <div class="p-8 flex flex-col justify-center items-center">
-        <h1 class="font-bold text-lg">{{ productName }}</h1>
-        <h1 class="font-bold text-lg">{{product.prodSize}}</h1>
-        <h1 class="font-bold text-lg">{{product.prodPrice}}</h1>
+        <h1 class="font-bold text-lg">Product Name {{ productName }}</h1>
+        <h1 class="font-bold text-lg">Product Size {{product.prodSize}}</h1>
+        <h1 class="font-bold text-lg">Product Price {{product.prodPrice}}</h1>
       </div>
     </div>
   </div>

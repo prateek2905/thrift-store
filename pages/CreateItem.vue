@@ -72,11 +72,7 @@ methods: {
 		this.formValues.user = this.store.user
         console.log(this.formValues);
 		if (this.formValues.prodName && this.formValues.category && this.formValues.condition && this.formValues.prodSize && this.formValues.quantity && this.formValues.prodPrice) {
-			axios.post("http://localhost:5000/products", this.formValues, {
-				headers: {
-					"Authorization": `Bearer `
-				}
-			})
+			axios.post("http://localhost:5000/products", this.formValues)
 			.then(({data}) => {
 				console.log(data);
 			})
