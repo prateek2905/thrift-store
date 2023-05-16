@@ -90,7 +90,6 @@ methods: {
 <style>
     .dashboard-container {
 			display: flex;
-            background-color: #f2f2f2;
 			flex-direction: column;
 			align-items: center;
 			height: 100vh;
@@ -100,4 +99,9 @@ methods: {
         #item_photo{
             margin-bottom: 3%;
         }
+		h1{
+			font-size: 2rem;
+			font-weight: bold;
+			color: #ffeba7;
+		}
 </style>

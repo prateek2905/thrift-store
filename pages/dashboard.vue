@@ -71,7 +71,7 @@ import ProductRow from '~/components/ProductRow.vue'
 			flex-direction: column;
 			align-items: center;
             width: 60%;
-            
+            color:#ffeba7;
         }
 		.item-form {
 			background-color: #fff;
