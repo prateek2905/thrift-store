@@ -3,10 +3,9 @@
 		<div class="account">
 			<div class="account-info-container">
 					<h1>Account Info</h1>
-					<p>Username: </p>
-					<p>Email: </p>
-					<p>Phone: </p>
-					<p>Location: </p>
+					<p>UID: {{store.uid}}</p>
+					<p>Email: {{store.email}}</p>
+					<p>Location: CU</p>
 					<p>Items for Sale: </p>
 					<NuxtLink to="/CreateItem"><button class="button1">New Item</button></NuxtLink>
 			</div>
@@ -22,14 +21,14 @@ import axios from "axios"
 import ProductRow from '~/components/ProductRow.vue'
 
 	let userProducts = []
+	let store
 
 	export default {
     async created() {
-        const store = useSearchQuery();
-        store.products = (await axios.get("http://localhost:5000/allProd")).data.products;
-        console.log(store.user);
-        this.userProducts = store.products.filter((p) => {
-            return p.user === store.user;
+        this.store = useSearchQuery();
+        this.store.products = (await axios.get("http://localhost:5000/allProd")).data.products;
+        this.userProducts = this.store.products.filter((p) => {
+            return p.user === this.store.user;
         });
         console.log(this.userProducts);
     },
@@ -43,6 +42,7 @@ import ProductRow from '~/components/ProductRow.vue'
                 quanity: 0,
                 price: 0,
             },
+			store,
 			userProducts
         };
     },

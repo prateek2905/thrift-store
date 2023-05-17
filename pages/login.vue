@@ -55,11 +55,13 @@ export default {
           this.store.loggedIn = '1'
           this.store.uid = data.uid
           this.store.user = data._id
+          this.store.email = data.email
 
           if(localStorage!==undefined) {
             localStorage.setItem('flag', '1')
             localStorage.setItem('uid', data.uid)
             localStorage.setItem('user', data._id)
+            localStorage.setItem('email', data.email)
           }
 
           navigateTo('/dashboard')
